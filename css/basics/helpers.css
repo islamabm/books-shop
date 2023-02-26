@@ -1,3 +1,6 @@
 .clean-list {
   list-style-type: none;
 }
+.clean-link {
+  text-decoration: none;
+}

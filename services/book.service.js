@@ -12,7 +12,7 @@ export const bookService = {
   get,
   remove,
   save,
-  getEmptyCar,
+  getEmptyCar: getEmptyBook,
 }
 
 function query(filterBy = {}) {
@@ -44,7 +44,7 @@ function save(book) {
   }
 }
 
-function getEmptyCar(name = '', maxPrice = 0) {
+function getEmptyBook(name = '', maxPrice = 0) {
   return { id: '', name, maxPrice }
 }
 
@@ -56,12 +56,40 @@ function _createBooks() {
     books.push(_createBook('loli', 120))
     books.push(_createBook('shraga', 100))
     books.push(_createBook('toti', 150))
+    books.push(_createBook('dharly', 300))
+    books.push(_createBook('bobie', 300))
+    books.push(_createBook('shuki', 300))
+    books.push(_createBook('chacha', 300))
+    books.push(_createBook('yuyu', 300))
+    books.push(_createBook('adventure', 300))
+    books.push(_createBook('money', 300))
     utilService.saveToStorage(BOOK_KEY, books)
   }
 }
 
 function _createBook(name, maxPrice = 250) {
-  const book = getEmptyCar(name, maxPrice)
+  const book = getEmptyBook(name, maxPrice)
   book.id = utilService.makeId()
+  book.desc = utilService.makeLorem()
+  book.subtitle = 'mi est eros dapibus himenaeos'
+  book.authors = ['Barbara Cartland']
+  book.publishedDate = 1999
+  book.pageCount = 700
+  book.categories = ['Computers', 'Hack']
+  book.language = 'en'
   return book
 }
+// "title": "metus hendrerit",
+// "subtitle": "mi est eros dapibus himenaeos",
+// "authors": [ "Barbara Cartland" ],
+// "publishedDate": 1999,
+// "description": "placerat nisi sodales suscipit tellus",
+// "pageCount": 713,
+// "categories": [ "Computers", "Hack" ],
+// "thumbnail": "http://ca.org/books-photos/20.jpg",
+// "language": "en",
+// "listPrice": {
+// "amount": 109,
+// "currencyCode": "EUR",
+// "isOnSale": false
+// }

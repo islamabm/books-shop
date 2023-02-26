@@ -1,7 +1,7 @@
 const { createApp } = Vue
 
-// import AppHeader from './cmps/AppHeader.js'
-// import AppFooter from './cmps/AppFooter.js'
+import AppHeader from './cmps/AppHeader.js'
+import AppFooter from './cmps/AppFooter.js'
 
 import BookIndex from './cmps/BookIndex.js'
 
@@ -11,13 +11,13 @@ import AboutPage from './pages/AboutPage.js'
 const options = {
   template: `
         <section class="container">
-            <!-- <AppHeader @setRoute="route = $event"/> -->
+            <AppHeader @setRoute="route = $event"/>
             <main class="router-view">
                 <HomePage v-if="route === 'HomePage'"/>
                 <BookIndex v-if="route === 'BookIndex'"/>
                 <AboutPage v-if="route === 'AboutPage'"/>
             </main>
-            <!-- <AppFooter /> -->
+            <AppFooter />
         </section>
     `,
   data() {
@@ -26,6 +26,8 @@ const options = {
     }
   },
   components: {
+    AppHeader,
+    AppFooter,
     BookIndex,
     HomePage,
     AboutPage,

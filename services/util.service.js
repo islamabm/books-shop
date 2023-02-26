@@ -21,7 +21,7 @@ function makeId(length = 6) {
   return txt
 }
 
-function makeLorem(size = 100) {
+function makeLorem(size = 15) {
   var words = [
     'The sky',
     'above',

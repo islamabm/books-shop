@@ -12,11 +12,10 @@
 
 /* Components */
 
-@import 'cmps/AppHeader.css';
-@import 'cmps/CarIndex.css';
-@import 'cmps/AppFooter.css';
-@import 'cmps/CarFilter.css';
-@import 'cmps/CarList.css';
+@import 'components/BookDetails.css';
+@import 'components/BookList.css';
+@import 'components/BookPreview.css';
+@import 'components/AppHeader.css';
 
 @import 'cmps/CarDetails.css';
 @import 'cmps/CarEdit.css';
