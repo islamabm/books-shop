@@ -3,7 +3,7 @@ const { createApp } = Vue
 // import AppHeader from './cmps/AppHeader.js'
 // import AppFooter from './cmps/AppFooter.js'
 
-import BookIndex from './css/components/BookIndex.js'
+import BookIndex from './cmps/BookIndex.js'
 
 import HomePage from './pages/HomePage.js'
 import AboutPage from './pages/AboutPage.js'
@@ -26,8 +26,6 @@ const options = {
     }
   },
   components: {
-    // AppHeader,
-    // AppFooter,
     BookIndex,
     HomePage,
     AboutPage,

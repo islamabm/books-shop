@@ -5,9 +5,9 @@
 
 /* Base */
 
-@import 'base/base.css';
-@import 'base/helpers.css';
-@import 'base/layout.css';
+@import 'basics/base.css';
+@import 'basics/helpers.css';
+@import 'basics/layout.css';
 /* @import 'base/forms.css'; */
 
 /* Components */

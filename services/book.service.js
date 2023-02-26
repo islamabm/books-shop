@@ -22,7 +22,7 @@ function query(filterBy = {}) {
       books = books.filter((book) => regex.test(book.name))
     }
     if (filterBy.minSpeed) {
-      books = books.filter((book) => car.maxPrice >= filterBy.minPrice)
+      books = books.filter((book) => book.maxPrice >= filterBy.minPrice)
     }
     return books
   })
@@ -52,15 +52,15 @@ function _createBooks() {
   let books = utilService.loadFromStorage(BOOK_KEY)
   if (!books || !books.length) {
     books = []
-    books.push(_createCar('puki', 300))
-    books.push(_createCar('loli', 120))
-    books.push(_createCar('shraga', 100))
-    books.push(_createCar('toti', 150))
+    books.push(_createBook('puki', 300))
+    books.push(_createBook('loli', 120))
+    books.push(_createBook('shraga', 100))
+    books.push(_createBook('toti', 150))
     utilService.saveToStorage(BOOK_KEY, books)
   }
 }
 
-function _createCar(name, maxPrice = 250) {
+function _createBook(name, maxPrice = 250) {
   const book = getEmptyCar(name, maxPrice)
   book.id = utilService.makeId()
   return book
