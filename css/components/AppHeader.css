@@ -16,3 +16,11 @@
 .main-menu a:last-child {
   margin-inline-end: 5px;
 }
+.about-img {
+  width: 600px;
+  margin: auto;
+}
+.about-header,
+.home-header {
+  text-align: center;
+}

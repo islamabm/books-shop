@@ -4,3 +4,15 @@
 .clean-link {
   text-decoration: none;
 }
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}

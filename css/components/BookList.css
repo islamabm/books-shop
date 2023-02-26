@@ -8,6 +8,7 @@
   list-style-type: none;
 }
 .book-list ul li {
+  color: aliceblue;
   padding: 10px;
-  background-color: darkseagreen;
+  background-color: rgb(48, 51, 48);
 }

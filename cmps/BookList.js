@@ -7,7 +7,7 @@ export default {
         <ul  class="clean-list">
                 <li  v-for="book in books" :key="book.id">
                 <BookPreview :book="book"/>
-                <button @click="showDetails(book.id)">Details</button>
+                <button class="glow-on-hover" @click="showDetails(book.id)">Details</button>
                 </li>
         </ul>
         </section>

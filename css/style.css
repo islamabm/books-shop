@@ -16,6 +16,6 @@
 @import 'components/BookList.css';
 @import 'components/BookPreview.css';
 @import 'components/AppHeader.css';
-
-@import 'cmps/CarDetails.css';
-@import 'cmps/CarEdit.css';
+@import 'components/BookFilter.css';
+@import 'components/AppFooter.css';
+@import 'components/BookEdit.css';
