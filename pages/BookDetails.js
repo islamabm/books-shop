@@ -1,12 +1,12 @@
 import LongTxt from '../cmps/LongTxt.js'
 import { bookService } from '../services/book.service.js'
+import AddReview from '../cmps/AddReview.js'
 
 export default {
   template: `
         <section class="book-details" v-if="book">
             <h1>{{ book.title }}</h1>
             <h5  class="book-title">{{ book.subtitle }}</h5>
-            <h5><span>Book Id :</span> {{ book.id }}</h5>
             <h5><span>Authors:</span> {{ book.authors[0] }}</h5>
             <img class="book-img" :src="book.thumbnail" />
             <h5><span>published Date:</span> {{ book.publishedDate }} <span>{{setDate}}</span></h5>
@@ -20,8 +20,14 @@ export default {
             </ul>
             <p><span>About Book:</span>{{ book.description }}</p>
            
-<RouterLink to="/book">Go Back To Books</RouterLink>
+        <RouterLink to="/book">Go Back To Books</RouterLink>
         </section>
+        <AddReview @add-review="onAddReview"/>
+        <article  v-if=" book && book.reviews " v-for="review in book.reviews" :key="review.fullname">
+          <h3>{{review.fullname}}</h3>
+          <h3>{{review.rate}}</h3>
+          <h3>{{review.readAt}}</h3>
+        </article>
     `,
   data() {
     return {
@@ -33,9 +39,18 @@ export default {
   },
   created() {
     const { bookId } = this.$route.params
-    bookService.get(bookId).then((book) => (this.book = book))
+    bookService.get(bookId).then((book) => {
+      this.book = book
+    })
   },
-  methods: {},
+  methods: {
+    onAddReview(review) {
+      const { bookId } = this.$route.params
+      console.log(review)
+      console.log(bookId)
+      bookService.addReview(bookId, review)
+    },
+  },
   computed: {
     setSentance() {
       if (this.book.pageCount > 500) this.sentance = 'Serious Reading'
@@ -62,6 +77,7 @@ export default {
   },
   components: {
     LongTxt,
+    AddReview,
   },
 }
 

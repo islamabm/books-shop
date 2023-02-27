@@ -1,0 +1,8 @@
+.add-review {
+  width: 200px;
+  background-color: rgb(72, 224, 52);
+}
+.form-review {
+  display: grid;
+  gap: 15px;
+}
