@@ -2,4 +2,19 @@
   color: var(--clr2);
   background-color: var(--clr3);
   text-align: center;
+
+  line-height: 80px;
+}
+
+.githip-icon,
+.facebook-icon,
+.linkedin-icon {
+  width: 40px;
+  margin-right: 0.5em;
+  cursor: pointer;
+}
+.icons {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
 }

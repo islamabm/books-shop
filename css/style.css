@@ -8,6 +8,7 @@
 @import 'basics/base.css';
 @import 'basics/helpers.css';
 @import 'basics/layout.css';
+@import 'basics/animations.css';
 /* @import 'base/forms.css'; */
 
 /* Components */
@@ -21,3 +22,4 @@
 @import 'components/BookEdit.css';
 @import 'components/UserMsg.css';
 @import 'components/AddReview.css';
+@import 'components/AboutPage.css';

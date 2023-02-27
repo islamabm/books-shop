@@ -34,7 +34,6 @@ export default {
       bookService
         .save(this.book)
         .then((savedBook) => {
-          // this.book = bookService.getEmptyBook()
           eventBusService.emit('show-msg', {
             txt: 'Book saved',
             type: 'success',

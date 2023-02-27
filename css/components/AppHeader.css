@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 15vh;
 }
 .main-menu {
   display: grid;
@@ -16,14 +17,7 @@
 .main-menu a:last-child {
   margin-inline-end: 5px;
 }
-.about-img {
-  width: 400px;
-  margin: auto;
-}
-.about-header,
-.home-header {
-  text-align: center;
-}
-.router-view {
-  color: var(--clr1);
+
+.header-link:hover {
+  color: var(--clr18);
 }

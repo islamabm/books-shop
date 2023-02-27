@@ -27,7 +27,7 @@ function query(filterBy = {}) {
     return books
   })
 }
-// this.filterBy.maxPrice > book.listPrice.amount
+
 function get(bookId) {
   return storageService.get(BOOK_KEY, bookId)
 }
@@ -44,10 +44,7 @@ function save(book) {
     return storageService.post(BOOK_KEY, book)
   }
 }
-{
-  /* <input type="number" v-model.number="book.pageCount">
-<input type="text" v-model.number="book.language"> */
-}
+
 function getEmptyBook(title = '', amount = 0, pageCount, language, desc) {
   return {
     id: '',
@@ -457,21 +454,9 @@ function addReview(bookId, review) {
     save(book)
   })
 }
-// function removeReview(bookId){
-//   get(bookId).then((book) => {
-//     book.
-// }
+
 function _createBook(title, amount = 250, pageCount, language, desc) {
   const book = getEmptyBook(title, amount, pageCount, language, desc)
   book.id = utilService.makeId()
-  //   book.desc = utilService.makeLorem()
-  //   book.subtitle = 'mi est eros dapibus himenaeos'
-  //   book.authors = ['Barbara Cartland']
-  //   book.publishedDate = 2022
-  //   book.pageCount = utilService.getRandomIntInclusive(200, 800)
-  //   book.categories = ['Computers', 'Hack']
-  //   book.language = 'en'
-  //   book.listPrice = { amount: 15, currencyCode: 'EUR', isOnSale: false }
-
   return book
 }

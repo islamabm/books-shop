@@ -7,22 +7,20 @@ export default {
         <section class="book-details" v-if="book">
             <h1>{{ book.title }}</h1>
             <h5  class="book-title">{{ book.subtitle }}</h5>
-            <h5><span>Authors:</span> {{ book.authors[0] }}</h5>
+            <h5><span>Authors:</span> {{ authors }}</h5>
             <img class="book-img" :src="book.thumbnail" />
-            <h5><span>published Date:</span> {{ book.publishedDate }} <span>{{setDate}}</span></h5>
+            <h5><span>published Date:</span> {{ book.publishedDate }}<span>{{setDate}}</span></h5>
             <h5><span> Pages:</span>{{ book.pageCount }} <span>{{setSentance}}</span></h5>
-            <h5>{{ book.categories[0] }}, {{ book.categories[1] }}</h5>
+            <h5> <span>Book Categories:</span>{{ categories }}</h5>
             <h5><span>Lang Of Book:</span> {{ book.language }}</h5>
-            <ul>
-                <li v-bind:class="PriceClass">{{book.listPrice.amount}}</li>
-                <li>{{book.listPrice.currencyCode}}</li>
-                <li>{{isInSale}}</li>
-            </ul>
-            <p><span>About Book:</span>{{ book.description }}</p>
-           
-        <RouterLink to="/book">Go Back To Books</RouterLink>
-        </section>
-        <AddReview @add-review="onAddReview"/>
+            <LongTxt :txt="book.description" />
+            <h5 v-bind:class="PriceClass">{{formattedPrice}}</h5>
+            <h5 v-if="book.listPrice.isOnSale">ON SALE📌</h5>
+
+              
+          <RouterLink to="/book">Go Back To Books</RouterLink>
+       </section>
+          <AddReview @add-review="onAddReview"/>
         <article  v-if=" book && book.reviews " v-for="review in book.reviews" :key="review.fullname">
   
           <ul>
@@ -50,23 +48,21 @@ export default {
   methods: {
     onAddReview(review) {
       const { bookId } = this.$route.params
-      console.log(review)
-      console.log(bookId)
       bookService.addReview(bookId, review)
     },
     onRemovePreview() {},
   },
   computed: {
     setSentance() {
-      if (this.book.pageCount > 500) this.sentance = 'Serious Reading'
-      else if (this.book.pageCount > 200) this.sentance = 'Descent Reading'
-      else if (this.book.pageCount < 100) this.sentance = 'Light Reading'
+      if (this.book.pageCount > 500) this.sentance = ' , Serious Reading'
+      else if (this.book.pageCount > 200) this.sentance = ' , Descent Reading'
+      else if (this.book.pageCount < 100) this.sentance = ' , Light Reading'
       return this.sentance
     },
     setDate() {
-      if (2023 - this.book.publishedDate > 10) this.date = 'Vintage'
-      else if (2023 - this.book.publishedDate <= 1) this.date = 'New'
-      return this.date
+      const currYear = new Date().getFullYear()
+      if (currYear - this.book.publishedDate > 10) return 'Vintage'
+      else if (currYear - this.book.publishedDate <= 1) return 'New'
     },
     PriceClass() {
       return {
@@ -74,10 +70,18 @@ export default {
         green: this.book.listPrice.amount < 20,
       }
     },
-    isInSale() {
-      if (this.book.listPrice.isOnSale) this.sale = '😎'
-      else this.sale = '😥'
-      return this.sale
+    authors() {
+      return this.book.authors.join(', ')
+    },
+    categories() {
+      return this.book.categories.join(', ')
+    },
+    formattedPrice() {
+      const { amount, currencyCode } = this.book.listPrice
+      return new Intl.NumberFormat('en', {
+        style: 'currency',
+        currency: currencyCode,
+      }).format(amount)
     },
   },
   components: {
@@ -85,13 +89,3 @@ export default {
     AddReview,
   },
 }
-
-//     "listPrice": {
-//     "amount": 109,
-//     "currencyCode": "EUR",
-//     "isOnSale": false
-//     }
-// Based on pageCount, also display the text:
-// - pageCount > 500 – Serious Reading
-// - pageCount > 200 – Descent Reading
-// - pageCount < 100 – Light Reading

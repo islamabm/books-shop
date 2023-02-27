@@ -5,12 +5,11 @@ export default {
   template: `
         <section class="book-list">
         <ul  class="clean-list">
-                <li  v-for="book in books" :key="book.id">
+                <li class="book-display"  v-for="book in books" :key="book.id">
                 <BookPreview :book="book"/>
-                <button  class="glow-on-hover"> <RouterLink :to="'/book/'+book.id">Details</RouterLink></button>|
-                <RouterLink :to="'/book/edit/'+book.id">Edit</RouterLink> 
-                <button @click="remove(book.id)">x</button>
-                <!-- <button hidden class="glow-on-hover" @click="showDetails(book.id)">Details</button> -->
+                <button class="details-btn"  class="glow-on-hover"> <RouterLink :to="'/book/'+book.id">Details</RouterLink></button>
+                <RouterLink class="edit-book-btn" :to="'/book/edit/'+book.id">Edit</RouterLink> 
+                <button class="remove-book-btn" @click="remove(book.id)"><img class="delete-book-icon" src="ICONS/trash.png" /></button>
                 </li>
         </ul>
         </section>

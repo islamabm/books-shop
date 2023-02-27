@@ -10,9 +10,3 @@
 .green {
   color: var(--clr16);
 }
-.hide {
-  display: none;
-}
-.show {
-  display: block;
-}
