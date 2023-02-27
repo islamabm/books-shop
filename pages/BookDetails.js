@@ -1,25 +1,9 @@
-import LongTxt from './LongTxt.js'
+import LongTxt from '../cmps/LongTxt.js'
+import { bookService } from '../services/book.service.js'
 
-// {
-//     "id": "OXeMG8wNskc",
-//     "title": "metus hendrerit",
-//     "subtitle": "mi est eros dapibus himenaeos",
-//     "authors": [ "Barbara Cartland" ],
-//     "publishedDate": 1999,
-//     "description": "placerat nisi sodales suscipit tellus",
-//     "pageCount": 713,
-//     "categories": [ "Computers", "Hack" ],
-//     "thumbnail": "http://ca.org/books-photos/20.jpg",
-//     "language": "en",
-//     "listPrice": {
-//     "amount": 109,
-//     "currencyCode": "EUR",
-//     "isOnSale": false
-//     }
 export default {
-  props: ['book'],
   template: `
-        <section class="book-details">
+        <section class="book-details" v-if="book">
             <h1>{{ book.title }}</h1>
             <h5  class="book-title">{{ book.subtitle }}</h5>
             <h5><span>Book Id :</span> {{ book.id }}</h5>
@@ -36,22 +20,22 @@ export default {
             </ul>
             <p><span>About Book:</span>{{ book.description }}</p>
            
-            <button @click="closeDetails">Close</button>
+<RouterLink to="/book">Go Back To Books</RouterLink>
         </section>
     `,
   data() {
     return {
+      book: null,
       sentance: '',
       date: '',
       sale: '',
     }
   },
-  methods: {
-    closeDetails() {
-      this.$emit('hide-details')
-      console.log(this.book)
-    },
+  created() {
+    const { bookId } = this.$route.params
+    bookService.get(bookId).then((book) => (this.book = book))
   },
+  methods: {},
   computed: {
     setSentance() {
       if (this.book.pageCount > 500) this.sentance = 'Serious Reading'

@@ -4,10 +4,11 @@ export default {
   template: `
 
         <section class="book-edit">
-        <h2>Add Book</h2>
+
+        <h2>{{(book.id)? 'Edit' : 'Add'}} a Book</h2>
             <form @submit.prevent="save">
                 <input type="text" v-model="book.title" placeholder="book name?">
-                <input type="number" v-model.number="book.maxPrice">
+                <input type="number" v-model.number="book.listPrice.amount">
                 <button>Save</button>
 
             </form>
@@ -16,29 +17,20 @@ export default {
   data() {
     return {
       book: bookService.getEmptyBook(),
-      //   hide: true,
+    }
+  },
+  created() {
+    const { bookId } = this.$route.params
+    if (bookId) {
+      bookService.get(bookId).then((book) => (this.book = book))
     }
   },
   methods: {
     save() {
       bookService.save(this.book).then((savedBook) => {
-        this.book = bookService.getEmptyBook()
-        this.$emit('book-saved', savedBook)
+        // this.book = bookService.getEmptyBook()
+        this.$router.push('/book')
       })
     },
   },
-  //   onAdd() {
-  //     this.hide = true
-  //   },
-  //   onSave() {
-  //     this.hide = false
-  //   },
-  //   computed: {
-  //     AddClass() {
-  //       return {
-  //         hide: !this.hide,
-  //         show: this.hide,
-  //       }
-  //     },
-  //   },
 }

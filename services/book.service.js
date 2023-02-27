@@ -386,15 +386,15 @@ function query(filterBy = {}) {
   return storageService.query(BOOK_KEY).then((books) => {
     if (filterBy.txt) {
       const regex = new RegExp(filterBy.txt, 'i')
-      books = books.filter((book) => regex.test(book.name))
+      books = books.filter((book) => regex.test(book.title))
     }
-    if (filterBy.minSpeed) {
-      books = books.filter((book) => book.maxPrice >= filterBy.minPrice)
+    if (filterBy.maxPrice) {
+      books = books.filter((book) => book.listPrice.amount >= filterBy.maxPrice)
     }
     return books
   })
 }
-
+// this.filterBy.maxPrice > book.listPrice.amount
 function get(bookId) {
   return storageService.get(BOOK_KEY, bookId)
 }
@@ -411,31 +411,38 @@ function save(book) {
   }
 }
 
-function getEmptyBook(name = '', maxPrice = 0) {
-  return { id: '', name, maxPrice }
+function getEmptyBook(title = '', amount = 0) {
+  return {
+    id: '',
+    title: title,
+    subtitle:
+      'varius malesuada augue molestie sollicitudin faucibus mi eu tempus',
+    authors: ['William Shakespeare'],
+    publishedDate: 2011,
+    description:
+      'aliquet euismod mi vivamus bibendum donec etiam quisque iaculis ullamcorper est sed',
+    pageCount: 904,
+    categories: ['Computers', 'Hack'],
+    thumbnail: 'http://coding-academy.org/books-photos/2.jpg',
+    language: 'sp',
+    listPrice: {
+      amount: amount,
+      currencyCode: 'ILS',
+      isOnSale: true,
+    },
+  }
 }
 
 function _createBooks() {
   let books = utilService.loadFromStorage(BOOK_KEY)
   if (!books || !books.length) {
     books = []
-    // books.push(_createBook('puki', 300))
-    // books.push(_createBook('loli', 120))
-    // books.push(_createBook('shraga', 100))
-    // books.push(_createBook('toti', 150))
-    // books.push(_createBook('dharly', 300))
-    // books.push(_createBook('bobie', 300))
-    // books.push(_createBook('shuki', 300))
-    // books.push(_createBook('chacha', 300))
-    // books.push(_createBook('yuyu', 300))
-    // books.push(_createBook('adventure', 300))
-    // books.push(_createBook('money', 300))
     utilService.saveToStorage(BOOK_KEY, books)
   }
 }
 
-function _createBook(name, maxPrice = 250) {
-  const book = getEmptyBook(name, maxPrice)
+function _createBook(title, amount = 250) {
+  const book = getEmptyBook(title, amount)
   book.id = utilService.makeId()
   //   book.desc = utilService.makeLorem()
   //   book.subtitle = 'mi est eros dapibus himenaeos'
@@ -448,17 +455,3 @@ function _createBook(name, maxPrice = 250) {
 
   return book
 }
-// "title": "metus hendrerit",
-// "subtitle": "mi est eros dapibus himenaeos",
-// "authors": [ "Barbara Cartland" ],
-// "publishedDate": 1999,
-// "description": "placerat nisi sodales suscipit tellus",
-// "pageCount": 713,
-// "categories": [ "Computers", "Hack" ],
-// "thumbnail": "http://ca.org/books-photos/20.jpg",
-// "language": "en",
-// "listPrice": {
-// "amount": 109,
-// "currencyCode": "EUR",
-// "isOnSale": false
-// }

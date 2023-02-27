@@ -17,10 +17,13 @@
   margin-inline-end: 5px;
 }
 .about-img {
-  width: 600px;
+  width: 400px;
   margin: auto;
 }
 .about-header,
 .home-header {
   text-align: center;
+}
+.router-view {
+  color: green;
 }
