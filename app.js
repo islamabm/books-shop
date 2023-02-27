@@ -2,6 +2,7 @@ const { createApp } = Vue
 
 import AppHeader from './cmps/AppHeader.js'
 import AppFooter from './cmps/AppFooter.js'
+import UserMsg from './cmps/UserMsg.js'
 
 import { router } from './routes.js'
 
@@ -22,6 +23,7 @@ const options = {
                 <AboutPage v-if="route === 'AboutPage'"/> -->
             </main>
             <AppFooter />
+            <UserMsg />
         </section>
     `,
   data() {
@@ -32,6 +34,7 @@ const options = {
   components: {
     AppHeader,
     AppFooter,
+    UserMsg,
     // BookIndex,
     // HomePage,
     // AboutPage,

@@ -1,4 +1,5 @@
 import { bookService } from '../services/book.service.js'
+import { eventBusService } from '../services/event-bus.service.js'
 import BookList from '../cmps/BookList.js'
 // import BookDetails from './BookDetails.js'
 import BookFilter from '../cmps/BookFilter.js'
@@ -28,10 +29,22 @@ export default {
   },
   methods: {
     removeBook(bookId) {
-      bookService.remove(bookId).then(() => {
-        const idx = this.books.findIndex((book) => book.id === bookId)
-        this.books.splice(idx, 1)
-      })
+      bookService
+        .remove(bookId)
+        .then(() => {
+          const idx = this.books.findIndex((book) => book.id === bookId)
+          this.books.splice(idx, 1)
+          eventBusService.emit('show-msg', {
+            txt: 'Book removed',
+            type: 'success',
+          })
+        })
+        .catch((err) => {
+          eventBusService.emit('show-msg', {
+            txt: 'Book remove failed',
+            type: 'error',
+          })
+        })
     },
     // showBookDetails(bookId) {
     //   this.selectedBook = this.books.find((book) => book.id === bookId)
