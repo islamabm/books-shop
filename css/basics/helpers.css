@@ -5,10 +5,10 @@
   text-decoration: none;
 }
 .red {
-  color: red;
+  color: var(--clr15);
 }
 .green {
-  color: green;
+  color: var(--clr16);
 }
 .hide {
   display: none;

@@ -1,6 +1,6 @@
 .add-review {
   width: 200px;
-  background-color: rgb(72, 224, 52);
+  background-color: var(--clr1);
 }
 .form-review {
   display: grid;

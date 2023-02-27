@@ -1,5 +1,5 @@
 .app-footer {
-  color: whitesmoke;
-  background-color: rgb(53, 48, 48);
+  color: var(--clr2);
+  background-color: var(--clr3);
   text-align: center;
 }

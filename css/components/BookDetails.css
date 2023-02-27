@@ -1,6 +1,6 @@
 .book-details {
-  background-color: rgb(87, 81, 81);
-  color: white;
+  background-color: var(--clr4);
+  color: var(--clr5);
   padding: 15px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: absolute;
@@ -15,7 +15,7 @@
 }
 
 .book-details span {
-  color: black;
+  color: var(--clr6);
 }
 .book-title {
   text-align: center;
