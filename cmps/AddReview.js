@@ -8,7 +8,9 @@ export default {
                 <button>Add Review</button>
 
              </form>
+           
           </section>
+          <h1>Book Reviews</h1>
       `,
 
   data() {

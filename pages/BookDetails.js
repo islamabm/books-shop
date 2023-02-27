@@ -24,9 +24,13 @@ export default {
         </section>
         <AddReview @add-review="onAddReview"/>
         <article  v-if=" book && book.reviews " v-for="review in book.reviews" :key="review.fullname">
-          <h3>{{review.fullname}}</h3>
-          <h3>{{review.rate}}</h3>
-          <h3>{{review.readAt}}</h3>
+  
+          <ul>
+          <li>{{review.fullname}}</li>
+          <li>{{review.rate}}</li>
+          <li>{{review.readAt}}</li>
+          <button @click="onRemovePreview">delete review</button>
+          </ul>
         </article>
     `,
   data() {
@@ -50,6 +54,7 @@ export default {
       console.log(bookId)
       bookService.addReview(bookId, review)
     },
+    onRemovePreview() {},
   },
   computed: {
     setSentance() {

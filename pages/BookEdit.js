@@ -1,14 +1,18 @@
 import { bookService } from '../services/book.service.js'
 import { eventBusService } from '../services/event-bus.service.js'
+
 export default {
   template: `
 
         <section class="book-edit">
 
         <h2>{{(book.id)? 'Edit' : 'Add'}} a Book</h2>
-            <form @submit.prevent="save">
+            <form @submit.prevent="save" class="add-book-form">
                 <input type="text" v-model="book.title" placeholder="book name?">
-                <input type="number" v-model.number="book.listPrice.amount">
+                <input type="number" v-model.number="book.listPrice.amount" placeholder="Book Price">
+                <input type="number" v-model.number="book.pageCount" placeholder="Book Pages count">
+                <input type="text" v-model.number="book.language" placeholder="book language">
+                <textarea name="w3review" v-model.number="book.description" rows="2" cols="10"  placeholder="short description">
                 <button>Save</button>
 
             </form>

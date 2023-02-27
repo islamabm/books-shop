@@ -44,8 +44,11 @@ function save(book) {
     return storageService.post(BOOK_KEY, book)
   }
 }
-
-function getEmptyBook(title = '', amount = 0) {
+{
+  /* <input type="number" v-model.number="book.pageCount">
+<input type="text" v-model.number="book.language"> */
+}
+function getEmptyBook(title = '', amount = 0, pageCount, language, desc) {
   return {
     id: '',
     title: title,
@@ -53,12 +56,11 @@ function getEmptyBook(title = '', amount = 0) {
       'varius malesuada augue molestie sollicitudin faucibus mi eu tempus',
     authors: ['William Shakespeare'],
     publishedDate: 2011,
-    description:
-      'aliquet euismod mi vivamus bibendum donec etiam quisque iaculis ullamcorper est sed',
-    pageCount: 904,
+    description: desc,
+    pageCount: pageCount,
     categories: ['Computers', 'Hack'],
     thumbnail: 'http://coding-academy.org/books-photos/2.jpg',
-    language: 'sp',
+    language: language,
     listPrice: {
       amount: amount,
       currencyCode: 'ILS',
@@ -455,8 +457,12 @@ function addReview(bookId, review) {
     save(book)
   })
 }
-function _createBook(title, amount = 250) {
-  const book = getEmptyBook(title, amount)
+// function removeReview(bookId){
+//   get(bookId).then((book) => {
+//     book.
+// }
+function _createBook(title, amount = 250, pageCount, language, desc) {
+  const book = getEmptyBook(title, amount, pageCount, language, desc)
   book.id = utilService.makeId()
   //   book.desc = utilService.makeLorem()
   //   book.subtitle = 'mi est eros dapibus himenaeos'
