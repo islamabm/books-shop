@@ -1,6 +1,7 @@
 export default {
   template: `
           <section class="add-review">
+            <h3 class="add-review-header">Add Review</h3>
              <form @submit.prevent="saveReview" class="form-review">
                  <input type="text" class="name-input" placeholder="fullname?" v-model=" review.fullname">
                  <input type="number" min="1" max="5" class="rate-input" placeholder="rate?" v-model=" review.rate">
