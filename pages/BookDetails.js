@@ -25,9 +25,9 @@ export default {
           <AddReview @add-review="onAddReview"/>
         <article  v-if=" book && book.reviews " v-for="review in book.reviews" :key="review.fullname">
   
-          <ul>
+          <ul class="clean-list">
           <li>{{review.fullname}}</li>
-          <li>{{review.rate}}</li>
+          <li><span  v-for="star in review.rate">⭐</span></li>
           <li>{{review.readAt}}</li>
           <button @click="onRemovePreview">delete review</button>
           </ul>

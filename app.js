@@ -22,8 +22,9 @@ const options = {
                 <BookIndex v-if="route === 'BookIndex'"/>
                 <AboutPage v-if="route === 'AboutPage'"/> -->
             </main>
-            <AppFooter />
+            <!-- <AppFooter /> -->
             <UserMsg />
+            <!-- <AppFooter /> -->
         </section>
     `,
   data() {
