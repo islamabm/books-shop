@@ -21,7 +21,7 @@ export default {
                 placeholder="Book Rate"
                 max="5"
                 min="1"
-                value="1"
+
                 type="number" />
                 <label>By published Year</label>
                 <input 

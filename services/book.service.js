@@ -4,6 +4,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const BOOK_KEY = 'bookDB'
+
 _createBooks()
 
 export const bookService = {
@@ -13,6 +14,7 @@ export const bookService = {
   save,
   addReview,
   getEmptyBook: getEmptyBook,
+  addGoogleBook: addGoogleBook,
 }
 
 function query(filterBy = {}) {
@@ -29,7 +31,7 @@ function query(filterBy = {}) {
 }
 
 function get(bookId) {
-  return storageService.get(BOOK_KEY, bookId)
+  return storageService.get(BOOK_KEY, bookId).then(_setNextPrevBookId)
 }
 
 function remove(bookId) {
@@ -459,4 +461,26 @@ function _createBook(title, amount = 250, pageCount, language, desc) {
   const book = getEmptyBook(title, amount, pageCount, language, desc)
   book.id = utilService.makeId()
   return book
+}
+
+function _setNextPrevBookId(book) {
+  return storageService.query(BOOK_KEY).then((books) => {
+    const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
+    book.nextBookId = books[bookIdx + 1] ? books[bookIdx + 1].id : books[0].id
+    book.prevBookId = books[bookIdx - 1]
+      ? books[bookIdx - 1].id
+      : books[books.length - 1].id
+    return book
+  })
+}
+
+// - Implement bookService.addGoogleBook(item) to add a simple
+// new book object to our database and return it in a Promise. You might
+// want to reuse the service’s existing add() function logic to begin with.
+
+function addGoogleBook(newBook) {
+  return storageService.query(BOOK_KEY).then((books) => {
+    const bookIdx = books.findIndex((book) => book.id === newBook.id)
+    if (bookIdx < 0) return storageService.post(BOOK_KEY, newBook)
+  })
 }

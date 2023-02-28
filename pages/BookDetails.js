@@ -17,7 +17,9 @@ export default {
             <h5 v-bind:class="PriceClass">{{formattedPrice}}</h5>
             <h5 v-if="book.listPrice.isOnSale">ON SALE📌</h5>
 
-              
+            <RouterLink :to="'/book/' + book.prevBookId">Previous Book</RouterLink> |
+            <RouterLink :to="'/book/' + book.nextBookId">Next Book</RouterLink>
+                <hr />
           <RouterLink to="/book">Go Back To Books</RouterLink>
        </section>
           <AddReview @add-review="onAddReview"/>
@@ -40,6 +42,7 @@ export default {
     }
   },
   created() {
+    this.loadBook()
     const { bookId } = this.$route.params
     bookService.get(bookId).then((book) => {
       this.book = book
@@ -50,7 +53,10 @@ export default {
       const { bookId } = this.$route.params
       bookService.addReview(bookId, review)
     },
-    onRemovePreview() {},
+    // onRemovePreview() {},
+    loadBook() {
+      bookService.get(this.bookId).then((book) => (this.book = book))
+    },
   },
   computed: {
     setSentance() {
@@ -82,6 +88,14 @@ export default {
         style: 'currency',
         currency: currencyCode,
       }).format(amount)
+    },
+    bookId() {
+      return this.$route.params.bookId
+    },
+  },
+  watch: {
+    bookId() {
+      this.loadBook()
     },
   },
   components: {

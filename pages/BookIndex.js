@@ -41,11 +41,11 @@ export default {
           })
         })
     },
-
     setFilterBy(filterBy) {
       this.filterBy = filterBy
     },
   },
+
   computed: {
     filteredBooks() {
       const regex = new RegExp(
@@ -62,6 +62,22 @@ export default {
       )
     },
   },
+  // filteredBooks() {
+  //   return this.books
+  //   const regex = new RegExp(
+  //     this.filterBy.title &&
+  //       this.filterBy.maxPrice &&
+  //       this.filterBy.createdAt,
+  //     'i'
+  //   )
+  //   return this.books.filter(
+  //     (book) =>
+  //       regex.test(book.title) &&
+  //       this.filterBy.maxPrice >= book.listPrice.amount &&
+  //       this.filterBy.createdAt >= book.publishedDate
+  //   )
+  // },
+
   created() {
     bookService.query().then((books) => {
       this.books = books

@@ -12,7 +12,7 @@ export default {
                 <input type="number" v-model.number="book.listPrice.amount" placeholder="Book Price">
                 <input type="number" v-model.number="book.pageCount" placeholder="Book Pages count">
                 <input type="text" v-model.number="book.language" placeholder="book language">
-                <textarea name="w3review" v-model.number="book.description" rows="2" cols="10"  placeholder="short description">
+                <textarea name="w3review" v-model.number="book.description" rows="2" cols="10"  placeholder="short description"></textarea>
                 <button>Save</button>
 
             </form>

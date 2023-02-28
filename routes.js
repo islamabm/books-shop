@@ -1,6 +1,7 @@
 import AboutPage, { AboutTeam, AboutServices } from './pages/AboutPage.js'
 
 import HomePage from './pages/HomePage.js'
+import BookAdd from './pages/BookAdd.js'
 import BookIndex from './pages/BookIndex.js'
 import BookDetails from './pages/BookDetails.js'
 import BookEdit from './pages/BookEdit.js'
@@ -39,6 +40,10 @@ const options = {
     {
       path: '/book/edit/:bookId?',
       component: BookEdit,
+    },
+    {
+      path: '/book/bookAdd',
+      component: BookAdd,
     },
     // Last fallback if no route was matched:
     {

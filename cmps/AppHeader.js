@@ -6,6 +6,7 @@ export default {
               <RouterLink to="/" class="header-link">Home</RouterLink>
               <RouterLink to="/book" class="header-link">our Books</RouterLink>
               <RouterLink to="/about" class="header-link">About</RouterLink>
+              <RouterLink to="/book/bookAdd">Book Add</RouterLink>
             </nav>
         </header>
     `,
